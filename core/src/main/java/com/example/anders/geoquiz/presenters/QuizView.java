@@ -7,4 +7,6 @@ public interface QuizView {
     void toastIncorrect();
 
     void toastCorrect();
+
+    void setQuestionTextView(int id);
 }
