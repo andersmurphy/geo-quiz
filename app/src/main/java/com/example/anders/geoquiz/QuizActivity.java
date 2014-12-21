@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +23,8 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
 
     private Button trueButton;
     private Button falseButton;
-    private Button nextButton;
-    private Button previousButton;
+    private ImageButton nextButton;
+    private ImageButton previousButton;
 
     private TextView questionTextView;
 
@@ -55,10 +56,10 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
         falseButton = (Button) findViewById(R.id.false_button);
         falseButton.setOnClickListener(falseButtonOnClickListener());
 
-        nextButton = (Button) findViewById(R.id.next_button);
+        nextButton = (ImageButton) findViewById(R.id.next_button);
         nextButton.setOnClickListener(nextButtonOnClickListener());
 
-        previousButton = (Button) findViewById(R.id.previous_button);
+        previousButton = (ImageButton) findViewById(R.id.previous_button);
         previousButton.setOnClickListener(previousButtonOnClickListener());
 
     }

@@ -36,22 +36,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/previous_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/previous_button"
-            android:drawableLeft="@drawable/ic_arrow_back_black"
-            android:drawablePadding="4dp"
-            />
+            android:src="@drawable/ic_arrow_back_black" />
 
-        <Button
+        <ImageButton
             android:id="@+id/next_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/next_button"
-            android:drawableRight="@drawable/ic_arrow_forward_black"
-            android:drawablePadding="4dp"/>
+            android:src="@drawable/ic_arrow_forward_black" />
 
     </LinearLayout>
 
