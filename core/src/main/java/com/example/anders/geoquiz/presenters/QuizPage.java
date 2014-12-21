@@ -18,8 +18,8 @@ public final class QuizPage implements QuizPresenter {
     }
 
     @Override
-    public void prepareQuestion() {
-        currentQuestion = generator.generateQuestion();
+    public void prepareFirstQuestion() {
+        currentQuestion = generator.generateFirstQuestion();
         view.setQuestionTextView(currentQuestion.getQuestionId());
     }
 
@@ -39,6 +39,18 @@ public final class QuizPage implements QuizPresenter {
         } else {
             view.toastCorrect();
         }
+    }
+
+    @Override
+    public void nextPressed() {
+        currentQuestion = generator.generateNextQuestion();
+        view.setQuestionTextView(currentQuestion.getQuestionId());
+    }
+
+    @Override
+    public void previousPressed() {
+        currentQuestion = generator.generatePreviousQuestion();
+        view.setQuestionTextView(currentQuestion.getQuestionId());
     }
 
 }

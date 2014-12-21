@@ -17,11 +17,11 @@ public class QuizPageTest {
         TrueFalseQuestion question = anyTrueQuestion();
         QuizView view = mock(QuizView.class);
         QuestionGenerator generator = mock(QuestionGenerator.class);
-        stub(generator.generateQuestion()).toReturn(question);
+        stub(generator.generateFirstQuestion()).toReturn(question);
 
 
         QuizPresenter presenter = new QuizPage(view, generator);
-        presenter.prepareQuestion();
+        presenter.prepareFirstQuestion();
         presenter.truePressed();
 
         verify(view).toastCorrect();
@@ -32,11 +32,11 @@ public class QuizPageTest {
         TrueFalseQuestion question = anyFalseQuestion();
         QuizView view = mock(QuizView.class);
         QuestionGenerator generator = mock(QuestionGenerator.class);
-        stub(generator.generateQuestion()).toReturn(question);
+        stub(generator.generateFirstQuestion()).toReturn(question);
 
 
         QuizPresenter presenter = new QuizPage(view, generator);
-        presenter.prepareQuestion();
+        presenter.prepareFirstQuestion();
         presenter.truePressed();
 
 
@@ -48,11 +48,11 @@ public class QuizPageTest {
         TrueFalseQuestion question = anyTrueQuestion();
         QuizView view = mock(QuizView.class);
         QuestionGenerator generator = mock(QuestionGenerator.class);
-        stub(generator.generateQuestion()).toReturn(question);
+        stub(generator.generateFirstQuestion()).toReturn(question);
 
 
         QuizPresenter presenter = new QuizPage(view, generator);
-        presenter.prepareQuestion();
+        presenter.prepareFirstQuestion();
         presenter.falsePressed();
 
         verify(view).toastIncorrect();
@@ -63,26 +63,38 @@ public class QuizPageTest {
         TrueFalseQuestion question = anyFalseQuestion();
         QuizView view = mock(QuizView.class);
         QuestionGenerator generator = mock(QuestionGenerator.class);
-        stub(generator.generateQuestion()).toReturn(question);
+        stub(generator.generateFirstQuestion()).toReturn(question);
 
 
         QuizPresenter presenter = new QuizPage(view, generator);
-        presenter.prepareQuestion();
+        presenter.prepareFirstQuestion();
         presenter.falsePressed();
 
         verify(view).toastCorrect();
     }
 
-
     @Test
-    public void prepare_question_sets_the_question_text_view() {
+    public void when_the_next_button_is_pressed_the_next_question_is_shown() {
         TrueFalseQuestion question = new TrueFalseQuestion(anyQuestionId(), true);
         QuizView view = mock(QuizView.class);
         QuestionGenerator generator = mock(QuestionGenerator.class);
-        stub(generator.generateQuestion()).toReturn(question);
+        stub(generator.generateNextQuestion()).toReturn(question);
 
         QuizPresenter presenter = new QuizPage(view, generator);
-        presenter.prepareQuestion();
+        presenter.nextPressed();
+
+        verify(view).setQuestionTextView(anyQuestionId());
+    }
+
+    @Test
+    public void when_the_previous_button_is_pressed_the_previous_question_is_shown() {
+        TrueFalseQuestion question = new TrueFalseQuestion(anyQuestionId(), true);
+        QuizView view = mock(QuizView.class);
+        QuestionGenerator generator = mock(QuestionGenerator.class);
+        stub(generator.generatePreviousQuestion()).toReturn(question);
+
+        QuizPresenter presenter = new QuizPage(view, generator);
+        presenter.previousPressed();
 
         verify(view).setQuestionTextView(anyQuestionId());
     }

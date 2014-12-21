@@ -23,6 +23,7 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
     private Button trueButton;
     private Button falseButton;
     private Button nextButton;
+    private Button previousButton;
 
     private TextView questionTextView;
 
@@ -46,7 +47,7 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
         presenter = new QuizPage(this, new TrueFalseQuestionGenerator(questionBank));
 
         questionTextView = (TextView) findViewById(R.id.question_text_view);
-        presenter.prepareQuestion();
+        presenter.prepareFirstQuestion();
 
         trueButton = (Button) findViewById(R.id.true_button);
         trueButton.setOnClickListener(trueButtonOnClickListener());
@@ -56,13 +57,26 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
 
         nextButton = (Button) findViewById(R.id.next_button);
         nextButton.setOnClickListener(nextButtonOnClickListener());
+
+        previousButton = (Button) findViewById(R.id.previous_button);
+        previousButton.setOnClickListener(previousButtonOnClickListener());
+
+    }
+
+    private View.OnClickListener previousButtonOnClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.previousPressed();
+            }
+        };
     }
 
     private View.OnClickListener nextButtonOnClickListener() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.prepareQuestion();
+                presenter.nextPressed();
             }
         };
     }
