@@ -19,7 +19,7 @@ public final class QuizPage implements QuizPresenter {
 
     @Override
     public void prepareFirstQuestion() {
-        currentQuestion = generator.generateFirstQuestion();
+        currentQuestion = generator.generateStartingQuestion();
         view.setQuestionTextView(currentQuestion.getQuestionId());
     }
 
@@ -53,4 +53,8 @@ public final class QuizPage implements QuizPresenter {
         view.setQuestionTextView(currentQuestion.getQuestionId());
     }
 
+    @Override
+    public int onSaveInstanceState() {
+        return generator.getCurrentQuestionIndex();
+    }
 }

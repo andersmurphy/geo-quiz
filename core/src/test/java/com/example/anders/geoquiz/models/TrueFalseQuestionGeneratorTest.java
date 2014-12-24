@@ -19,7 +19,7 @@ public class TrueFalseQuestionGeneratorTest {
         questions.add(thirdQuestion());
 
         QuestionGenerator generator = new TrueFalseQuestionGenerator(questions);
-        TrueFalseQuestion actualQuestion = generator.generateFirstQuestion();
+        TrueFalseQuestion actualQuestion = generator.generateStartingQuestion();
 
         TrueFalseQuestion expectedQuestion = firstQuestion();
         assertThat(actualQuestion, is(equalTo(expectedQuestion)));
@@ -33,7 +33,7 @@ public class TrueFalseQuestionGeneratorTest {
         questions.add(thirdQuestion());
 
         QuestionGenerator generator = new TrueFalseQuestionGenerator(questions);
-        generator.generateFirstQuestion();
+        generator.generateStartingQuestion();
         generator.generateNextQuestion();
         TrueFalseQuestion actualQuestion = generator.generateNextQuestion();
 
@@ -49,7 +49,7 @@ public class TrueFalseQuestionGeneratorTest {
         questions.add(thirdQuestion());
 
         QuestionGenerator generator = new TrueFalseQuestionGenerator(questions);
-        generator.generateFirstQuestion();
+        generator.generateStartingQuestion();
         generator.generateNextQuestion();
         generator.generateNextQuestion();
         TrueFalseQuestion actualQuestion = generator.generateNextQuestion();
@@ -66,7 +66,7 @@ public class TrueFalseQuestionGeneratorTest {
         questions.add(thirdQuestion());
 
         QuestionGenerator generator = new TrueFalseQuestionGenerator(questions);
-        generator.generateFirstQuestion();
+        generator.generateStartingQuestion();
         generator.generateNextQuestion();
         TrueFalseQuestion actualQuestion = generator.generatePreviousQuestion();
 
@@ -82,7 +82,7 @@ public class TrueFalseQuestionGeneratorTest {
         questions.add(thirdQuestion());
 
         QuestionGenerator generator = new TrueFalseQuestionGenerator(questions);
-        generator.generateFirstQuestion();
+        generator.generateStartingQuestion();
         TrueFalseQuestion actualQuestion = generator.generatePreviousQuestion();
 
         TrueFalseQuestion expectedQuestion = thirdQuestion();

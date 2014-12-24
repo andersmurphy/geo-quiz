@@ -3,7 +3,7 @@ package com.example.anders.geoquiz.models;
 /**
  * Created by anders on 18/12/14.
  */
-public class TrueFalseQuestion {
+public final class TrueFalseQuestion {
 
     private final int questionId;
     private final boolean isTrue;

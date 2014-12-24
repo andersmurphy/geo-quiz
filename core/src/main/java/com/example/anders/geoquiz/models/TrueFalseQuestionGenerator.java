@@ -5,23 +5,26 @@ import java.util.List;
 /**
  * Created by anders on 18/12/14.
  */
-public class TrueFalseQuestionGenerator implements QuestionGenerator {
+public final class TrueFalseQuestionGenerator implements QuestionGenerator {
 
     private final List<TrueFalseQuestion> questions;
     private int currentQuestionIndex;
     private final int FIRST_QUESTION_INDEX = 0;
     private final int lastQuestionIndex;
 
-    public TrueFalseQuestionGenerator(List<TrueFalseQuestion> questions){
+    public TrueFalseQuestionGenerator(List<TrueFalseQuestion> questions) {
+        this(questions, 0);
+    }
+
+    public TrueFalseQuestionGenerator(List<TrueFalseQuestion> questions, int startingQuestionIndex) {
         this.questions = questions;
-        currentQuestionIndex = FIRST_QUESTION_INDEX;
+        currentQuestionIndex = startingQuestionIndex;
         lastQuestionIndex = calculateLastQuestionIndex();
     }
 
     @Override
-    public TrueFalseQuestion generateFirstQuestion() {
-        currentQuestionIndex = FIRST_QUESTION_INDEX;
-        return questions.get(FIRST_QUESTION_INDEX);
+    public TrueFalseQuestion generateStartingQuestion() {
+        return questions.get(currentQuestionIndex);
     }
 
     @Override
@@ -38,6 +41,11 @@ public class TrueFalseQuestionGenerator implements QuestionGenerator {
         TrueFalseQuestion previousQuestion = questions.get(previousQuestionIndex);
         currentQuestionIndex = previousQuestionIndex;
         return previousQuestion;
+    }
+
+    @Override
+    public int getCurrentQuestionIndex() {
+        return currentQuestionIndex;
     }
 
     private int calculateLastQuestionIndex() {

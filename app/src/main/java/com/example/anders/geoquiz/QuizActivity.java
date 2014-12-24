@@ -19,13 +19,14 @@ import java.util.List;
 
 public class QuizActivity extends ActionBarActivity implements QuizView {
 
+    private final static String KEY_QUESTION_INDEX = "questionIndex";
+
     private QuizPresenter presenter;
 
     private Button trueButton;
     private Button falseButton;
     private ImageButton nextButton;
     private ImageButton previousButton;
-
     private TextView questionTextView;
 
     private final List<TrueFalseQuestion> questionBank;
@@ -45,7 +46,8 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        presenter = new QuizPage(this, new TrueFalseQuestionGenerator(questionBank));
+        int currentQuestionIndex = savedInstanceState != null ? savedInstanceState.getInt(KEY_QUESTION_INDEX, 0) : 0;
+        presenter = new QuizPage(this, new TrueFalseQuestionGenerator(questionBank, currentQuestionIndex));
 
         questionTextView = (TextView) findViewById(R.id.question_text_view);
         presenter.prepareFirstQuestion();
@@ -62,6 +64,28 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
         previousButton = (ImageButton) findViewById(R.id.previous_button);
         previousButton.setOnClickListener(previousButtonOnClickListener());
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        int currentQuestionIndex = presenter.onSaveInstanceState();
+        savedInstanceState.putInt(KEY_QUESTION_INDEX, currentQuestionIndex);
+    }
+
+    @Override
+    public void toastIncorrect() {
+        Toast.makeText(this, R.string.incorrect_toast, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void toastCorrect() {
+        Toast.makeText(this, R.string.correct_toast, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setQuestionTextView(int id) {
+        questionTextView.setText(id);
     }
 
     private View.OnClickListener previousButtonOnClickListener() {
@@ -100,20 +124,5 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
                 presenter.truePressed();
             }
         };
-    }
-
-    @Override
-    public void toastIncorrect() {
-        Toast.makeText(this, R.string.incorrect_toast, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void toastCorrect() {
-        Toast.makeText(this, R.string.correct_toast, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void setQuestionTextView(int id) {
-        questionTextView.setText(id);
     }
 }

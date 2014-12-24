@@ -17,7 +17,7 @@ public class QuizPageTest {
         TrueFalseQuestion question = anyTrueQuestion();
         QuizView view = mock(QuizView.class);
         QuestionGenerator generator = mock(QuestionGenerator.class);
-        stub(generator.generateFirstQuestion()).toReturn(question);
+        stub(generator.generateStartingQuestion()).toReturn(question);
 
 
         QuizPresenter presenter = new QuizPage(view, generator);
@@ -32,7 +32,7 @@ public class QuizPageTest {
         TrueFalseQuestion question = anyFalseQuestion();
         QuizView view = mock(QuizView.class);
         QuestionGenerator generator = mock(QuestionGenerator.class);
-        stub(generator.generateFirstQuestion()).toReturn(question);
+        stub(generator.generateStartingQuestion()).toReturn(question);
 
 
         QuizPresenter presenter = new QuizPage(view, generator);
@@ -48,7 +48,7 @@ public class QuizPageTest {
         TrueFalseQuestion question = anyTrueQuestion();
         QuizView view = mock(QuizView.class);
         QuestionGenerator generator = mock(QuestionGenerator.class);
-        stub(generator.generateFirstQuestion()).toReturn(question);
+        stub(generator.generateStartingQuestion()).toReturn(question);
 
 
         QuizPresenter presenter = new QuizPage(view, generator);
@@ -63,7 +63,7 @@ public class QuizPageTest {
         TrueFalseQuestion question = anyFalseQuestion();
         QuizView view = mock(QuizView.class);
         QuestionGenerator generator = mock(QuestionGenerator.class);
-        stub(generator.generateFirstQuestion()).toReturn(question);
+        stub(generator.generateStartingQuestion()).toReturn(question);
 
 
         QuizPresenter presenter = new QuizPage(view, generator);

@@ -13,4 +13,6 @@ public interface QuizPresenter {
     void nextPressed();
 
     void previousPressed();
+
+    int onSaveInstanceState();
 }
