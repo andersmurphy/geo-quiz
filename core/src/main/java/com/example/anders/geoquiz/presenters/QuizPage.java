@@ -2,7 +2,6 @@ package com.example.anders.geoquiz.presenters;
 
 import com.example.anders.geoquiz.models.QuestionGenerator;
 import com.example.anders.geoquiz.models.TrueFalseQuestion;
-import com.example.anders.geoquiz.presenters.QuizPresenter;
 
 /**
  * Created by anders on 15/12/14.

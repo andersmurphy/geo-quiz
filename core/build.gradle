@@ -1,22 +1,7 @@
 apply plugin: 'java'
-apply plugin: 'scala'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile "org.mockito:mockito-all:1.9.5"
-
-    compile 'org.scala-lang:scala-library:2.11.1'
-    testCompile 'org.scalatest:scalatest_2.11:2.2.5'
-}
-
-sourceSets {
-    main {
-        scala {
-            srcDirs = ['src/main/scala', 'src/main/java']
-        }
-        java {
-            srcDirs = []
-        }
-    }
 }
