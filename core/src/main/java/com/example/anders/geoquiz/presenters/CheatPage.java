@@ -12,6 +12,7 @@ public final class CheatPage implements CheatPresenter {
 
     @Override
     public void showAnswerPressed() {
+        view.storeThatUserHasCheated();
         view.showAnswer(isTrue);
     }
 }

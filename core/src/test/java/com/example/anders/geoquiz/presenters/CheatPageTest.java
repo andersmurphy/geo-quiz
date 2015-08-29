@@ -22,7 +22,7 @@ public class CheatPageTest {
         CheatView view = mock(CheatView.class);
 
         CheatPresenter presenter = new CheatPage(view, true);
-        presenter.viewLaunched();
+        presenter.showAnswerPressed();
 
         verify(view).showAnswer(true);
     }
