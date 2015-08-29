@@ -6,6 +6,7 @@ import com.example.anders.geoquiz.models.TrueFalseQuestion;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.stub;
 import static org.mockito.Mockito.verify;
 
@@ -97,6 +98,20 @@ public class QuizPageTest {
         presenter.previousPressed();
 
         verify(view).setQuestionTextView(anyQuestionId());
+    }
+
+    @Test
+    public void when_the_cheat_button_is_pressed_the_cheat_activity_is_launched() {
+        TrueFalseQuestion question = anyTrueQuestion();
+        QuizView view = mock(QuizView.class);
+        QuestionGenerator generator = mock(QuestionGenerator.class);
+        stub(generator.generateStartingQuestion()).toReturn(question);
+
+        QuizPresenter presenter = new QuizPage(view, generator);
+        presenter.prepareFirstQuestion();
+        presenter.cheatPressed();
+
+        verify(view).launchCheatActivity(question.isTrue());
     }
 
     private int anyQuestionId() {

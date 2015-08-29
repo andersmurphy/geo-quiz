@@ -9,4 +9,6 @@ public interface QuizView {
     void toastCorrect();
 
     void setQuestionTextView(int id);
+
+    void launchCheatActivity(boolean isTrue);
 }

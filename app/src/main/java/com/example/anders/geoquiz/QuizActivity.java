@@ -1,7 +1,7 @@
 package com.example.anders.geoquiz;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,7 +17,7 @@ import com.example.anders.geoquiz.presenters.QuizView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuizActivity extends ActionBarActivity implements QuizView {
+public class QuizActivity extends BaseActivity implements QuizView {
 
     private final static String KEY_QUESTION_INDEX = "questionIndex";
 
@@ -28,6 +28,7 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
     private ImageButton nextButton;
     private ImageButton previousButton;
     private TextView questionTextView;
+    private Button cheatButton;
 
     private final List<TrueFalseQuestion> questionBank;
 
@@ -64,6 +65,8 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
         previousButton = (ImageButton) findViewById(R.id.previous_button);
         previousButton.setOnClickListener(previousButtonOnClickListener());
 
+        cheatButton = (Button) findViewById(R.id.cheat_button);
+        cheatButton.setOnClickListener(cheatButtonOnClickListener());
     }
 
     @Override
@@ -86,6 +89,13 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
     @Override
     public void setQuestionTextView(int id) {
         questionTextView.setText(id);
+    }
+
+    @Override
+    public void launchCheatActivity(boolean isTrue) {
+        Intent intent = new Intent(this, CheatActivity.class);
+        intent.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, isTrue);
+        startActivity(intent);
     }
 
     private View.OnClickListener previousButtonOnClickListener() {
@@ -122,6 +132,15 @@ public class QuizActivity extends ActionBarActivity implements QuizView {
             @Override
             public void onClick(View v) {
                 presenter.truePressed();
+            }
+        };
+    }
+
+    private View.OnClickListener cheatButtonOnClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.cheatPressed();
             }
         };
     }

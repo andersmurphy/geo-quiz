@@ -57,4 +57,9 @@ public final class QuizPage implements QuizPresenter {
     public int onSaveInstanceState() {
         return generator.getCurrentQuestionIndex();
     }
+
+    @Override
+    public void cheatPressed() {
+        view.launchCheatActivity(currentQuestion.isTrue());
+    }
 }
