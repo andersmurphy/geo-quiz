@@ -95,7 +95,17 @@ public class QuizActivity extends BaseActivity implements QuizView {
     public void launchCheatActivity(boolean isTrue) {
         Intent intent = new Intent(this, CheatActivity.class);
         intent.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, isTrue);
-        startActivity(intent);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void toastJudgement() {
+        Toast.makeText(this, R.string.judgment_toast, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        presenter.resultFromCheatScreen(data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false));
     }
 
     private View.OnClickListener previousButtonOnClickListener() {

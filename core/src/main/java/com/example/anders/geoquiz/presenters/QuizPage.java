@@ -11,6 +11,7 @@ public final class QuizPage implements QuizPresenter {
     private final QuizView view;
     private final QuestionGenerator generator;
     private TrueFalseQuestion currentQuestion;
+    private boolean userCheated = false;
 
     public QuizPage(QuizView view, QuestionGenerator generator) {
         this.view = view;
@@ -25,19 +26,27 @@ public final class QuizPage implements QuizPresenter {
 
     @Override
     public void truePressed() {
-        if (currentQuestion.isTrue()) {
-            view.toastCorrect();
+        if (userCheated) {
+            view.toastJudgement();
         } else {
-            view.toastIncorrect();
+            if (currentQuestion.isTrue()) {
+                view.toastCorrect();
+            } else {
+                view.toastIncorrect();
+            }
         }
     }
 
     @Override
     public void falsePressed() {
-        if (currentQuestion.isTrue()) {
-            view.toastIncorrect();
+        if (userCheated) {
+            view.toastJudgement();
         } else {
-            view.toastCorrect();
+            if (currentQuestion.isTrue()) {
+                view.toastIncorrect();
+            } else {
+                view.toastCorrect();
+            }
         }
     }
 
@@ -61,5 +70,10 @@ public final class QuizPage implements QuizPresenter {
     @Override
     public void cheatPressed() {
         view.launchCheatActivity(currentQuestion.isTrue());
+    }
+
+    @Override
+    public void resultFromCheatScreen(boolean wasAnswerShown) {
+        this.userCheated = wasAnswerShown;
     }
 }

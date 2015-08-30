@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockingDetails;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.stub;
 import static org.mockito.Mockito.verify;
 
@@ -72,6 +73,40 @@ public class QuizPageTest {
         presenter.falsePressed();
 
         verify(view).toastCorrect();
+    }
+
+    @Test
+    public void when_the_false_button_is_pressed_and_the_user_cheated_the_judgement_toast_is_shown() {
+        TrueFalseQuestion question = anyFalseQuestion();
+        QuizView view = mock(QuizView.class);
+        QuestionGenerator generator = mock(QuestionGenerator.class);
+        stub(generator.generateStartingQuestion()).toReturn(question);
+
+
+        QuizPresenter presenter = new QuizPage(view, generator);
+        presenter.prepareFirstQuestion();
+        presenter.resultFromCheatScreen(true);
+        presenter.falsePressed();
+
+        verify(view, never()).toastIncorrect();
+        verify(view).toastJudgement();
+    }
+
+    @Test
+    public void when_the_true_button_is_pressed_and_the_user_cheated_the_judgement_toast_is_shown() {
+        TrueFalseQuestion question = anyFalseQuestion();
+        QuizView view = mock(QuizView.class);
+        QuestionGenerator generator = mock(QuestionGenerator.class);
+        stub(generator.generateStartingQuestion()).toReturn(question);
+
+
+        QuizPresenter presenter = new QuizPage(view, generator);
+        presenter.prepareFirstQuestion();
+        presenter.resultFromCheatScreen(true);
+        presenter.falsePressed();
+
+        verify(view, never()).toastCorrect();
+        verify(view).toastJudgement();
     }
 
     @Test

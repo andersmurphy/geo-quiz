@@ -17,4 +17,6 @@ public interface QuizPresenter {
     int onSaveInstanceState();
 
     void cheatPressed();
+
+    void resultFromCheatScreen(boolean wasAnswerShown);
 }

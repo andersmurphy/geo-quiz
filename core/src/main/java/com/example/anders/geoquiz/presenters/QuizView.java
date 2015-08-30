@@ -11,4 +11,6 @@ public interface QuizView {
     void setQuestionTextView(int id);
 
     void launchCheatActivity(boolean isTrue);
+
+    void toastJudgement();
 }
