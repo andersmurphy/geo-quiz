@@ -31,6 +31,7 @@ public class QuizActivity extends BaseActivity implements QuizView {
     private Button cheatButton;
 
     private final List<TrueFalseQuestion> questionBank;
+    private boolean userCheated = false;
 
     public QuizActivity() {
         questionBank = new ArrayList<>();
@@ -49,6 +50,7 @@ public class QuizActivity extends BaseActivity implements QuizView {
 
         int currentQuestionIndex = savedInstanceState != null ? savedInstanceState.getInt(KEY_QUESTION_INDEX, 0) : 0;
         presenter = new QuizPage(this, new TrueFalseQuestionGenerator(questionBank, currentQuestionIndex));
+        presenter.resultFromCheatScreen(savedInstanceState != null && savedInstanceState.getBoolean(CheatActivity.EXTRA_ANSWER_SHOWN, false));
 
         questionTextView = (TextView) findViewById(R.id.question_text_view);
         presenter.prepareFirstQuestion();
@@ -74,6 +76,7 @@ public class QuizActivity extends BaseActivity implements QuizView {
         super.onSaveInstanceState(savedInstanceState);
         int currentQuestionIndex = presenter.onSaveInstanceState();
         savedInstanceState.putInt(KEY_QUESTION_INDEX, currentQuestionIndex);
+        savedInstanceState.putBoolean(CheatActivity.EXTRA_ANSWER_SHOWN, userCheated);
     }
 
     @Override
@@ -93,6 +96,7 @@ public class QuizActivity extends BaseActivity implements QuizView {
 
     @Override
     public void launchCheatActivity(boolean isTrue) {
+        userCheated = isTrue;
         Intent intent = new Intent(this, CheatActivity.class);
         intent.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, isTrue);
         startActivityForResult(intent, 0);
@@ -105,7 +109,9 @@ public class QuizActivity extends BaseActivity implements QuizView {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        presenter.resultFromCheatScreen(data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false));
+        if(data != null) {
+            presenter.resultFromCheatScreen(data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false));
+        }
     }
 
     private View.OnClickListener previousButtonOnClickListener() {

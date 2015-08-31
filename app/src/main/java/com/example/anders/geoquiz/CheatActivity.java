@@ -15,6 +15,7 @@ public class CheatActivity extends BaseActivity implements CheatView {
     private CheatPresenter presenter;
     private Button showAnswerButton;
     private TextView answerTextView;
+    private boolean answerShown = false;
     public static final String EXTRA_ANSWER_IS_TRUE = "EXTRA_ANSWER_IS_TRUE";
     public static final String EXTRA_ANSWER_SHOWN = "EXTRA_ANSWER_SHOWN";
 
@@ -26,7 +27,10 @@ public class CheatActivity extends BaseActivity implements CheatView {
 
         boolean isTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
         presenter = new CheatPage(this, isTrue);
-
+        answerShown = savedInstanceState != null && savedInstanceState.getBoolean(EXTRA_ANSWER_SHOWN, false);
+        if(answerShown) {
+            storeThatTheAnswerHasBeenShown();
+        }
         showAnswerButton = (Button) findViewById(R.id.showAnswerButton);
         showAnswerButton.setOnClickListener(showAnswerButtonListener());
 
@@ -38,6 +42,13 @@ public class CheatActivity extends BaseActivity implements CheatView {
         Intent data = new Intent();
         data.putExtra(EXTRA_ANSWER_SHOWN, true);
         setResult(RESULT_OK, data);
+        answerShown = true;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean(EXTRA_ANSWER_SHOWN, answerShown);
     }
 
     @Override
