@@ -31,7 +31,7 @@ public class QuizActivity extends BaseActivity implements QuizView {
     private Button cheatButton;
 
     private final List<TrueFalseQuestion> questionBank;
-    private boolean userCheated = false;
+    private Bundle savedInstanceState;
 
     public QuizActivity() {
         questionBank = new ArrayList<>();
@@ -74,9 +74,8 @@ public class QuizActivity extends BaseActivity implements QuizView {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        int currentQuestionIndex = presenter.onSaveInstanceState();
-        savedInstanceState.putInt(KEY_QUESTION_INDEX, currentQuestionIndex);
-        savedInstanceState.putBoolean(CheatActivity.EXTRA_ANSWER_SHOWN, userCheated);
+        this.savedInstanceState = savedInstanceState;
+        presenter.saveState();
     }
 
     @Override
@@ -96,7 +95,6 @@ public class QuizActivity extends BaseActivity implements QuizView {
 
     @Override
     public void launchCheatActivity(boolean isTrue) {
-        userCheated = isTrue;
         Intent intent = new Intent(this, CheatActivity.class);
         intent.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, isTrue);
         startActivityForResult(intent, 0);
@@ -105,6 +103,16 @@ public class QuizActivity extends BaseActivity implements QuizView {
     @Override
     public void toastJudgement() {
         Toast.makeText(this, R.string.judgment_toast, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void saveCurrentQuestionIndex(int currentQuestionIndex) {
+        savedInstanceState.putInt(KEY_QUESTION_INDEX, currentQuestionIndex);
+    }
+
+    @Override
+    public void saveWhetherUserCheated(boolean userCheated) {
+        savedInstanceState.putBoolean(CheatActivity.EXTRA_ANSWER_SHOWN, userCheated);
     }
 
     @Override

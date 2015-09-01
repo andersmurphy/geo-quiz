@@ -149,6 +149,30 @@ public class QuizPageTest {
         verify(view).launchCheatActivity(question.isTrue());
     }
 
+    @Test
+    public void when_saving_state_save_current_question_index() throws Exception {
+        QuizView view = mock(QuizView.class);
+        QuestionGenerator generator = mock(QuestionGenerator.class);
+        stub(generator.getCurrentQuestionIndex()).toReturn(1);
+
+        QuizPresenter presenter = new QuizPage(view, generator);
+        presenter.saveState();
+
+        verify(view).saveCurrentQuestionIndex(1);
+    }
+
+    @Test
+    public void when_saving_state_save_whether_user_cheated() throws Exception {
+        QuizView view = mock(QuizView.class);
+        QuestionGenerator generator = mock(QuestionGenerator.class);
+
+        QuizPresenter presenter = new QuizPage(view, generator);
+        presenter.resultFromCheatScreen(true);
+        presenter.saveState();
+
+        verify(view).saveWhetherUserCheated(true);
+    }
+
     private int anyQuestionId() {
         return 1;
     }

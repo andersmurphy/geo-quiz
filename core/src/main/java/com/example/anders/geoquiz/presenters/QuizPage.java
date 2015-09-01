@@ -13,6 +13,7 @@ public final class QuizPage implements QuizPresenter {
     private TrueFalseQuestion currentQuestion;
     private boolean userCheated = false;
 
+
     public QuizPage(QuizView view, QuestionGenerator generator) {
         this.view = view;
         this.generator = generator;
@@ -63,8 +64,9 @@ public final class QuizPage implements QuizPresenter {
     }
 
     @Override
-    public int onSaveInstanceState() {
-        return generator.getCurrentQuestionIndex();
+    public void saveState() {
+        view.saveCurrentQuestionIndex(generator.getCurrentQuestionIndex());
+        view.saveWhetherUserCheated(userCheated);
     }
 
     @Override

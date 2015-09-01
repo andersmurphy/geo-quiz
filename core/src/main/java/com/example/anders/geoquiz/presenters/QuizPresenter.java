@@ -14,7 +14,7 @@ public interface QuizPresenter {
 
     void previousPressed();
 
-    int onSaveInstanceState();
+    void saveState();
 
     void cheatPressed();
 
