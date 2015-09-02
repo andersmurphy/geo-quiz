@@ -17,18 +17,32 @@ import com.example.anders.geoquiz.presenters.QuizView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class QuizActivity extends BaseActivity implements QuizView {
 
     private final static String KEY_QUESTION_INDEX = "questionIndex";
 
-    private QuizPresenter presenter;
+    @InjectView(R.id.true_button)
+    Button trueButton;
 
-    private Button trueButton;
-    private Button falseButton;
-    private ImageButton nextButton;
-    private ImageButton previousButton;
-    private TextView questionTextView;
-    private Button cheatButton;
+    @InjectView(R.id.false_button)
+    Button falseButton;
+
+    @InjectView(R.id.next_button)
+    ImageButton nextButton;
+
+    @InjectView(R.id.previous_button)
+    ImageButton previousButton;
+
+    @InjectView(R.id.question_text_view)
+    TextView questionTextView;
+
+    @InjectView(R.id.cheat_button)
+    Button cheatButton;
+
+    private QuizPresenter presenter;
     private Bundle savedInstanceState;
 
     private final List<TrueFalseQuestion> questionBank;
@@ -46,27 +60,17 @@ public class QuizActivity extends BaseActivity implements QuizView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        ButterKnife.inject(this);
 
         int currentQuestionIndex = savedInstanceState != null ? savedInstanceState.getInt(KEY_QUESTION_INDEX, 0) : 0;
         presenter = new QuizPage(this, new TrueFalseQuestionGenerator(questionBank, currentQuestionIndex));
         presenter.resultFromCheatScreen(savedInstanceState != null && savedInstanceState.getBoolean(CheatActivity.EXTRA_ANSWER_SHOWN, false));
-
-        questionTextView = (TextView) findViewById(R.id.question_text_view);
         presenter.prepareFirstQuestion();
 
-        trueButton = (Button) findViewById(R.id.true_button);
         trueButton.setOnClickListener(trueButtonOnClickListener());
-
-        falseButton = (Button) findViewById(R.id.false_button);
         falseButton.setOnClickListener(falseButtonOnClickListener());
-
-        nextButton = (ImageButton) findViewById(R.id.next_button);
         nextButton.setOnClickListener(nextButtonOnClickListener());
-
-        previousButton = (ImageButton) findViewById(R.id.previous_button);
         previousButton.setOnClickListener(previousButtonOnClickListener());
-
-        cheatButton = (Button) findViewById(R.id.cheat_button);
         cheatButton.setOnClickListener(cheatButtonOnClickListener());
     }
 

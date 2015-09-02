@@ -10,28 +10,34 @@ import com.example.anders.geoquiz.presenters.CheatPage;
 import com.example.anders.geoquiz.presenters.CheatPresenter;
 import com.example.anders.geoquiz.presenters.CheatView;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class CheatActivity extends BaseActivity implements CheatView {
 
-    private CheatPresenter presenter;
-    private Button showAnswerButton;
-    private TextView answerTextView;
-    private Bundle savedInstanceState;
     public static final String EXTRA_ANSWER_IS_TRUE = "EXTRA_ANSWER_IS_TRUE";
     public static final String EXTRA_ANSWER_SHOWN = "EXTRA_ANSWER_SHOWN";
+
+    @InjectView(R.id.show_answer_button)
+    Button showAnswerButton;
+
+    @InjectView(R.id.answer_text_view)
+    TextView answerTextView;
+
+    private Bundle savedInstanceState;
+    private CheatPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
+        ButterKnife.inject(this);
 
         boolean isQuestionAnswerTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
         boolean hasAnswerButtonBeenShown = savedInstanceState != null && savedInstanceState.getBoolean(EXTRA_ANSWER_SHOWN, false);
         presenter = new CheatPage(this, isQuestionAnswerTrue, hasAnswerButtonBeenShown);
 
-        showAnswerButton = (Button) findViewById(R.id.showAnswerButton);
         showAnswerButton.setOnClickListener(showAnswerButtonListener());
-
-        answerTextView = (TextView) findViewById(R.id.answerTextView);
     }
 
     @Override
