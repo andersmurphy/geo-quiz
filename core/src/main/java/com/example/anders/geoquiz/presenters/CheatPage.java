@@ -3,20 +3,32 @@ package com.example.anders.geoquiz.presenters;
 public final class CheatPage implements CheatPresenter {
 
     private final CheatView view;
-    private final boolean isTrue;
+    private final boolean isQuestionAnswerTrue;
+    private boolean hasAnswerBeenShown;
 
-    public CheatPage(CheatView view, boolean isTrue) {
+    public CheatPage(CheatView view, boolean isQuestionAnswerTrue, boolean hasAnswerBeenShown) {
         this.view = view;
-        this.isTrue = isTrue;
+        this.isQuestionAnswerTrue = isQuestionAnswerTrue;
+        this.hasAnswerBeenShown = hasAnswerBeenShown;
     }
 
     @Override
     public void showAnswerPressed() {
-        view.storeThatTheAnswerHasBeenShown();
-        if(isTrue) {
+        hasAnswerBeenShown = true;
+        if(isQuestionAnswerTrue) {
             view.showAnswerIsTrue();
         } else {
             view.showAnswerIsFalse();
         }
+    }
+
+    @Override
+    public void setResult() {
+        view.setResultAnswerShown(hasAnswerBeenShown);
+    }
+
+    @Override
+    public void saveState() {
+        view.saveAnswerShown(hasAnswerBeenShown);
     }
 }

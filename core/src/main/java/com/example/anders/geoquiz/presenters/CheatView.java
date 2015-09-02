@@ -1,7 +1,9 @@
 package com.example.anders.geoquiz.presenters;
 
 public interface CheatView {
-    void storeThatTheAnswerHasBeenShown();
+    void setResultAnswerShown(boolean answerShown);
+
+    void saveAnswerShown(boolean answerShown);
 
     void showAnswerIsTrue();
 

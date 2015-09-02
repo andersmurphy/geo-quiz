@@ -29,10 +29,9 @@ public class QuizActivity extends BaseActivity implements QuizView {
     private ImageButton previousButton;
     private TextView questionTextView;
     private Button cheatButton;
-
-    private final List<TrueFalseQuestion> questionBank;
     private Bundle savedInstanceState;
 
+    private final List<TrueFalseQuestion> questionBank;
     public QuizActivity() {
         questionBank = new ArrayList<>();
         questionBank.add(new TrueFalseQuestion(R.string.question_oceans, true));
@@ -79,6 +78,13 @@ public class QuizActivity extends BaseActivity implements QuizView {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(data != null) {
+            presenter.resultFromCheatScreen(data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false));
+        }
+    }
+
+    @Override
     public void toastIncorrect() {
         Toast.makeText(this, R.string.incorrect_toast, Toast.LENGTH_LONG).show();
     }
@@ -111,15 +117,8 @@ public class QuizActivity extends BaseActivity implements QuizView {
     }
 
     @Override
-    public void saveWhetherUserCheated(boolean userCheated) {
+    public void saveUserCheated(boolean userCheated) {
         savedInstanceState.putBoolean(CheatActivity.EXTRA_ANSWER_SHOWN, userCheated);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(data != null) {
-            presenter.resultFromCheatScreen(data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false));
-        }
     }
 
     private View.OnClickListener previousButtonOnClickListener() {

@@ -6,7 +6,6 @@ import com.example.anders.geoquiz.models.TrueFalseQuestion;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.stub;
 import static org.mockito.Mockito.verify;
@@ -170,7 +169,7 @@ public class QuizPageTest {
         presenter.resultFromCheatScreen(true);
         presenter.saveState();
 
-        verify(view).saveWhetherUserCheated(true);
+        verify(view).saveUserCheated(true);
     }
 
     private int anyQuestionId() {

@@ -66,7 +66,7 @@ public final class QuizPage implements QuizPresenter {
     @Override
     public void saveState() {
         view.saveCurrentQuestionIndex(generator.getCurrentQuestionIndex());
-        view.saveWhetherUserCheated(userCheated);
+        view.saveUserCheated(userCheated);
     }
 
     @Override

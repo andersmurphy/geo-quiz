@@ -15,22 +15,19 @@ public class CheatActivity extends BaseActivity implements CheatView {
     private CheatPresenter presenter;
     private Button showAnswerButton;
     private TextView answerTextView;
-    private boolean answerShown = false;
+    private Bundle savedInstanceState;
     public static final String EXTRA_ANSWER_IS_TRUE = "EXTRA_ANSWER_IS_TRUE";
     public static final String EXTRA_ANSWER_SHOWN = "EXTRA_ANSWER_SHOWN";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
 
-        boolean isTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
-        presenter = new CheatPage(this, isTrue);
-        answerShown = savedInstanceState != null && savedInstanceState.getBoolean(EXTRA_ANSWER_SHOWN, false);
-        if(answerShown) {
-            storeThatTheAnswerHasBeenShown();
-        }
+        boolean isQuestionAnswerTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
+        boolean hasAnswerButtonBeenShown = savedInstanceState != null && savedInstanceState.getBoolean(EXTRA_ANSWER_SHOWN, false);
+        presenter = new CheatPage(this, isQuestionAnswerTrue, hasAnswerButtonBeenShown);
+
         showAnswerButton = (Button) findViewById(R.id.showAnswerButton);
         showAnswerButton.setOnClickListener(showAnswerButtonListener());
 
@@ -38,16 +35,27 @@ public class CheatActivity extends BaseActivity implements CheatView {
     }
 
     @Override
-    public void storeThatTheAnswerHasBeenShown() {
-        Intent data = new Intent();
-        data.putExtra(EXTRA_ANSWER_SHOWN, true);
-        setResult(RESULT_OK, data);
-        answerShown = true;
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        this.savedInstanceState = savedInstanceState;
+        presenter.saveState();
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
+    public void onBackPressed() {
+        presenter.setResult();
+        super.onBackPressed();
+    }
+
+    @Override
+    public void setResultAnswerShown(boolean hasAnswerBeenShown) {
+        Intent data = new Intent();
+        data.putExtra(EXTRA_ANSWER_SHOWN, hasAnswerBeenShown);
+        setResult(RESULT_OK, data);
+    }
+
+    @Override
+    public void saveAnswerShown(boolean answerShown) {
         savedInstanceState.putBoolean(EXTRA_ANSWER_SHOWN, answerShown);
     }
 

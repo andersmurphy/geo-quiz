@@ -6,7 +6,7 @@ package com.example.anders.geoquiz.presenters;
 public interface QuizView {
     void saveCurrentQuestionIndex(int currentQuestionIndex);
 
-    void saveWhetherUserCheated(boolean userCheated);
+    void saveUserCheated(boolean userCheated);
 
     void toastIncorrect();
 
