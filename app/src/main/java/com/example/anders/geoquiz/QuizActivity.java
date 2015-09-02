@@ -17,30 +17,29 @@ import com.example.anders.geoquiz.presenters.QuizView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 
 @ContentView(R.layout.activity_quiz)
 public class QuizActivity extends BaseActivity implements QuizView {
 
     private final static String KEY_QUESTION_INDEX = "questionIndex";
 
-    @InjectView(R.id.true_button)
+    @Bind(R.id.true_button)
     Button trueButton;
 
-    @InjectView(R.id.false_button)
+    @Bind(R.id.false_button)
     Button falseButton;
 
-    @InjectView(R.id.next_button)
+    @Bind(R.id.next_button)
     ImageButton nextButton;
 
-    @InjectView(R.id.previous_button)
+    @Bind(R.id.previous_button)
     ImageButton previousButton;
 
-    @InjectView(R.id.question_text_view)
+    @Bind(R.id.question_text_view)
     TextView questionTextView;
 
-    @InjectView(R.id.cheat_button)
+    @Bind(R.id.cheat_button)
     Button cheatButton;
 
     private QuizPresenter presenter;

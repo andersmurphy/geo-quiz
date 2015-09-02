@@ -11,6 +11,6 @@ public class BaseActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getClass().getAnnotation(ContentView.class).value());
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
     }
 }

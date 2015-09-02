@@ -10,8 +10,7 @@ import com.example.anders.geoquiz.presenters.CheatPage;
 import com.example.anders.geoquiz.presenters.CheatPresenter;
 import com.example.anders.geoquiz.presenters.CheatView;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 
 @ContentView(R.layout.activity_cheat)
 public class CheatActivity extends BaseActivity implements CheatView {
@@ -19,10 +18,10 @@ public class CheatActivity extends BaseActivity implements CheatView {
     public static final String EXTRA_ANSWER_IS_TRUE = "EXTRA_ANSWER_IS_TRUE";
     public static final String EXTRA_ANSWER_SHOWN = "EXTRA_ANSWER_SHOWN";
 
-    @InjectView(R.id.show_answer_button)
+    @Bind(R.id.show_answer_button)
     Button showAnswerButton;
 
-    @InjectView(R.id.answer_text_view)
+    @Bind(R.id.answer_text_view)
     TextView answerTextView;
 
     private Bundle savedInstanceState;
