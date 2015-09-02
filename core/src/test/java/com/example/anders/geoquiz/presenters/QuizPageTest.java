@@ -102,7 +102,7 @@ public class QuizPageTest {
         QuizPresenter presenter = new QuizPage(view, generator);
         presenter.prepareFirstQuestion();
         presenter.resultFromCheatScreen(true);
-        presenter.falsePressed();
+        presenter.truePressed();
 
         verify(view, never()).toastCorrect();
         verify(view).toastJudgement();
