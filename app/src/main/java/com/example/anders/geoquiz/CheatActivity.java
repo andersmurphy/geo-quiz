@@ -13,6 +13,7 @@ import com.example.anders.geoquiz.presenters.CheatView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+@ContentView(R.layout.activity_cheat)
 public class CheatActivity extends BaseActivity implements CheatView {
 
     public static final String EXTRA_ANSWER_IS_TRUE = "EXTRA_ANSWER_IS_TRUE";
@@ -30,8 +31,6 @@ public class CheatActivity extends BaseActivity implements CheatView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cheat);
-        ButterKnife.inject(this);
 
         boolean isQuestionAnswerTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
         boolean hasAnswerButtonBeenShown = savedInstanceState != null && savedInstanceState.getBoolean(EXTRA_ANSWER_SHOWN, false);

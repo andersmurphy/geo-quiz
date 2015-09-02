@@ -20,6 +20,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+@ContentView(R.layout.activity_quiz)
 public class QuizActivity extends BaseActivity implements QuizView {
 
     private final static String KEY_QUESTION_INDEX = "questionIndex";
@@ -59,8 +60,6 @@ public class QuizActivity extends BaseActivity implements QuizView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
-        ButterKnife.inject(this);
 
         int currentQuestionIndex = savedInstanceState != null ? savedInstanceState.getInt(KEY_QUESTION_INDEX, 0) : 0;
         presenter = new QuizPage(this, new TrueFalseQuestionGenerator(questionBank, currentQuestionIndex));
