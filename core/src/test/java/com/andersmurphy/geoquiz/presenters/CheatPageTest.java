@@ -1,6 +1,6 @@
-package com.example.anders.geoquiz.presenters;
+package com.andersmurphy.geoquiz.presenters;
 
-import com.example.anders.geoquiz.models.QuestionGenerator;
+import com.andersmurphy.geoquiz.models.QuestionGenerator;
 
 import org.junit.Test;
 

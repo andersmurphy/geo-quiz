@@ -1,4 +1,4 @@
-package com.example.anders.geoquiz.presenters;
+package com.andersmurphy.geoquiz.presenters;
 
 /**
  * Created by anders on 15/12/14.

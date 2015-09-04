@@ -1,4 +1,4 @@
-package com.example.anders.geoquiz;
+package com.andersmurphy.geoquiz;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

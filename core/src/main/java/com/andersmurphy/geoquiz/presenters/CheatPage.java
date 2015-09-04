@@ -1,4 +1,4 @@
-package com.example.anders.geoquiz.presenters;
+package com.andersmurphy.geoquiz.presenters;
 
 public final class CheatPage implements CheatPresenter {
 

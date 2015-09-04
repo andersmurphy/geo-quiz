@@ -1,4 +1,4 @@
-package com.example.anders.geoquiz.presenters;
+package com.andersmurphy.geoquiz.presenters;
 
 public interface CheatView {
     void setResultAnswerShown(boolean answerShown);

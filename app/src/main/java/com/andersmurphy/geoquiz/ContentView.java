@@ -1,4 +1,4 @@
-package com.example.anders.geoquiz;
+package com.andersmurphy.geoquiz;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

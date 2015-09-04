@@ -1,4 +1,4 @@
-package com.example.anders.geoquiz;
+package com.andersmurphy.geoquiz;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.anders.geoquiz.presenters.CheatPage;
-import com.example.anders.geoquiz.presenters.CheatPresenter;
-import com.example.anders.geoquiz.presenters.CheatView;
+import com.andersmurphy.geoquiz.presenters.CheatPage;
+import com.andersmurphy.geoquiz.presenters.CheatPresenter;
+import com.andersmurphy.geoquiz.presenters.CheatView;
 
 import butterknife.Bind;
 

@@ -1,4 +1,4 @@
-package com.example.anders.geoquiz.models;
+package com.andersmurphy.geoquiz.models;
 
 /**
  * Created by anders on 18/12/14.
