@@ -1,6 +1,6 @@
-package com.example.anders.geoquiz.presenters
+package com.andersmurphy.geoquiz.presenters
 
-import com.example.anders.geoquiz.models.{TrueFalseQuestion, QuestionGenerator}
+import com.andersmurphy.geoquiz.models.{TrueFalseQuestion, QuestionGenerator}
 
 final class QuizPage(val view: QuizView, val generator: QuestionGenerator) extends QuizPresenter {
 

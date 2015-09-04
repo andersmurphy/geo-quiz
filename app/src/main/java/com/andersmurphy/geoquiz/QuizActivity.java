@@ -1,4 +1,4 @@
-package com.example.anders.geoquiz;
+package com.andersmurphy.geoquiz;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -8,11 +8,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.anders.geoquiz.models.TrueFalseQuestion;
-import com.example.anders.geoquiz.models.TrueFalseQuestionGenerator;
-import com.example.anders.geoquiz.presenters.QuizPage;
-import com.example.anders.geoquiz.presenters.QuizPresenter;
-import com.example.anders.geoquiz.presenters.QuizView;
+import com.andersmurphy.geoquiz.models.TrueFalseQuestion;
+import com.andersmurphy.geoquiz.models.TrueFalseQuestionGenerator;
+import com.andersmurphy.geoquiz.presenters.QuizPage;
+import com.andersmurphy.geoquiz.presenters.QuizPresenter;
+import com.andersmurphy.geoquiz.presenters.QuizView;
 
 import java.util.ArrayList;
 import java.util.List;
