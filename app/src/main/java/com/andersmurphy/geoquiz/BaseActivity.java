@@ -5,7 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 
 import butterknife.ButterKnife;
 
-public class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
