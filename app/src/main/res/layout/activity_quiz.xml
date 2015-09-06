@@ -9,6 +9,7 @@
     <TextView
         android:id="@+id/question_text_view"
         android:padding="24dp"
+        android:textSize="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -36,17 +37,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageButton
+        <Button
             android:id="@+id/previous_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back_black" />
+            android:text="@string/previous_button" />
 
-        <ImageButton
+        <Button
             android:id="@+id/next_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_forward_black" />
+            android:text="@string/next_button" />
 
     </LinearLayout>
 

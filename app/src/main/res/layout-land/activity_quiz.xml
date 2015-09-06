@@ -35,14 +35,12 @@
         android:id="@+id/previous_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_back_black"
         android:layout_gravity="bottom|left" />
 
     <ImageButton
         android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_forward_black"
         android:layout_gravity="bottom|right" />
 
     <Button

@@ -31,10 +31,10 @@ public class QuizActivity extends BaseActivity implements QuizView {
     Button falseButton;
 
     @Bind(R.id.next_button)
-    ImageButton nextButton;
+    Button nextButton;
 
     @Bind(R.id.previous_button)
-    ImageButton previousButton;
+    Button previousButton;
 
     @Bind(R.id.question_text_view)
     TextView questionTextView;
