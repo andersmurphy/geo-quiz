@@ -124,49 +124,22 @@ public class QuizActivity extends BaseActivity implements QuizView {
     }
 
     private View.OnClickListener previousButtonOnClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.previousPressed();
-            }
-        };
+        return v -> presenter.previousPressed();
     }
 
     private View.OnClickListener nextButtonOnClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.nextPressed();
-            }
-        };
+        return v -> presenter.nextPressed();
     }
 
     private View.OnClickListener falseButtonOnClickListener() {
-        return new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                presenter.falsePressed();
-            }
-        };
+        return v -> presenter.falsePressed();
     }
 
     private View.OnClickListener trueButtonOnClickListener() {
-        return new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                presenter.truePressed();
-            }
-        };
+        return v -> presenter.truePressed();
     }
 
     private View.OnClickListener cheatButtonOnClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.cheatPressed();
-            }
-        };
+        return v -> presenter.cheatPressed();
     }
 }

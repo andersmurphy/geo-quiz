@@ -74,11 +74,6 @@ public class CheatActivity extends BaseActivity implements CheatView {
     }
 
     private View.OnClickListener showAnswerButtonListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.showAnswerPressed();
-            }
-        };
+        return v -> presenter.showAnswerPressed();
     }
 }
