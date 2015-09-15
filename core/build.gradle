@@ -6,19 +6,3 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile "org.mockito:mockito-all:1.9.5"
 }
-
-String java8 = getJavaVersion(8)
-String java7 = getJavaVersion(7)
-retrolambda {
-    jdk java8
-    oldJdk java7
-    javaVersion JavaVersion.VERSION_1_7
-}
-
-String getJavaVersion(Integer v) {
-    def sout = new StringBuffer()
-    def proc = "/usr/libexec/java_home -v 1.$v".execute()
-    proc.consumeProcessOutput(sout, new StringBuffer())
-    proc.waitForOrKill(1000)
-    return sout.toString().replace("\n", "").replace("\r", "")
-}
