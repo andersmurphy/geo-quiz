@@ -35,3 +35,7 @@ android {
     }
 }
 
+retrolambda {
+    oldJdk JAVA7_HOME //set JAVA7_HOME in project root gradle.properties
+}
+
