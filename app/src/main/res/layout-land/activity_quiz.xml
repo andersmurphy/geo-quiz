@@ -6,16 +6,16 @@
 
     <TextView
         android:id="@+id/question_text_view"
-        android:padding="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:padding="24dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical|center_horizontal">
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/true_button"
@@ -31,17 +31,19 @@
 
     </LinearLayout>
 
-    <ImageButton
+    <Button
         android:id="@+id/previous_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|left" />
+        android:layout_gravity="bottom|left"
+        android:text="@string/previous_button" />
 
-    <ImageButton
+    <Button
         android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right" />
+        android:layout_gravity="bottom|right"
+        android:text="@string/next_button" />
 
     <Button
         android:id="@+id/cheat_button"
