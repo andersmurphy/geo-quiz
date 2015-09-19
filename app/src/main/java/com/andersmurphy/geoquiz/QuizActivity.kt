@@ -7,7 +7,6 @@ import android.widget.Toast
 
 import com.andersmurphy.geoquiz.models.TrueFalseQuestion
 import com.andersmurphy.geoquiz.models.TrueFalseQuestionGenerator
-import com.andersmurphy.geoquiz.presenters.NoOpQuizPage
 import com.andersmurphy.geoquiz.presenters.QuizPage
 import com.andersmurphy.geoquiz.presenters.QuizPresenter
 import com.andersmurphy.geoquiz.presenters.QuizView
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.activity_quiz.*
 @ContentView(R.layout.activity_quiz)
 class QuizActivity : BaseActivity(), QuizView {
 
-    private var presenter: QuizPresenter = NoOpQuizPage()
+    private lateinit var presenter: QuizPresenter
     private var savedInstanceState: Bundle? = null
 
     private val questionBank: MutableList<TrueFalseQuestion>

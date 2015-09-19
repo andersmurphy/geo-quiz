@@ -8,14 +8,13 @@ import android.view.View
 import com.andersmurphy.geoquiz.presenters.CheatPage
 import com.andersmurphy.geoquiz.presenters.CheatPresenter
 import com.andersmurphy.geoquiz.presenters.CheatView
-import com.andersmurphy.geoquiz.presenters.NoOpCheatPage
 import kotlinx.android.synthetic.activity_cheat.*
 
 @ContentView(R.layout.activity_cheat)
 class CheatActivity : BaseActivity(), CheatView {
 
+    private lateinit var presenter: CheatPresenter
     private var savedInstanceState: Bundle? = null
-    private var presenter: CheatPresenter = NoOpCheatPage()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
