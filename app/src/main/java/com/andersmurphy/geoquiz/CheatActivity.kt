@@ -8,13 +8,14 @@ import android.view.View
 import com.andersmurphy.geoquiz.presenters.CheatPage
 import com.andersmurphy.geoquiz.presenters.CheatPresenter
 import com.andersmurphy.geoquiz.presenters.CheatView
+import com.andersmurphy.geoquiz.presenters.NoOpCheatPage
 import kotlinx.android.synthetic.activity_cheat.*
 
-ContentView(R.layout.activity_cheat)
+@ContentView(R.layout.activity_cheat)
 class CheatActivity : BaseActivity(), CheatView {
 
     private var savedInstanceState: Bundle? = null
-    private var presenter: CheatPresenter? = null
+    private var presenter: CheatPresenter = NoOpCheatPage()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +30,11 @@ class CheatActivity : BaseActivity(), CheatView {
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         this.savedInstanceState = savedInstanceState
-        presenter!!.saveState()
+        presenter.saveState()
     }
 
     override fun onBackPressed() {
-        presenter!!.setResult()
+        presenter.setResult()
         super.onBackPressed()
     }
 
@@ -56,11 +57,7 @@ class CheatActivity : BaseActivity(), CheatView {
     }
 
     private fun showAnswerButtonListener(): View.OnClickListener {
-        return object : View.OnClickListener {
-            override fun onClick(v: View) {
-                presenter!!.showAnswerPressed()
-            }
-        }
+        return View.OnClickListener { presenter.showAnswerPressed()}
     }
 
     companion object {

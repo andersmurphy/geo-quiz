@@ -7,6 +7,7 @@ import android.widget.Toast
 
 import com.andersmurphy.geoquiz.models.TrueFalseQuestion
 import com.andersmurphy.geoquiz.models.TrueFalseQuestionGenerator
+import com.andersmurphy.geoquiz.presenters.NoOpQuizPage
 import com.andersmurphy.geoquiz.presenters.QuizPage
 import com.andersmurphy.geoquiz.presenters.QuizPresenter
 import com.andersmurphy.geoquiz.presenters.QuizView
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.activity_quiz.*
 @ContentView(R.layout.activity_quiz)
 class QuizActivity : BaseActivity(), QuizView {
 
-    private var presenter: QuizPresenter? = null
+    private var presenter: QuizPresenter = NoOpQuizPage()
     private var savedInstanceState: Bundle? = null
 
     private val questionBank: MutableList<TrueFalseQuestion>
@@ -38,8 +39,8 @@ class QuizActivity : BaseActivity(), QuizView {
 
         val currentQuestionIndex = if (savedInstanceState != null) savedInstanceState.getInt(KEY_QUESTION_INDEX, 0) else 0
         presenter = QuizPage(this, TrueFalseQuestionGenerator(questionBank, currentQuestionIndex))
-        presenter!!.resultFromCheatScreen(savedInstanceState != null && savedInstanceState.getBoolean(CheatActivity.EXTRA_ANSWER_SHOWN, false))
-        presenter!!.prepareFirstQuestion()
+        presenter.resultFromCheatScreen(savedInstanceState != null && savedInstanceState.getBoolean(CheatActivity.EXTRA_ANSWER_SHOWN, false))
+        presenter.prepareFirstQuestion()
 
         true_button.setOnClickListener(trueButtonOnClickListener())
         false_button.setOnClickListener(falseButtonOnClickListener())
@@ -51,12 +52,12 @@ class QuizActivity : BaseActivity(), QuizView {
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         this.savedInstanceState = savedInstanceState
-        presenter!!.saveState()
+        presenter.saveState()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (data != null) {
-            presenter!!.resultFromCheatScreen(data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false))
+            presenter.resultFromCheatScreen(data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false))
         }
     }
 
@@ -91,43 +92,23 @@ class QuizActivity : BaseActivity(), QuizView {
     }
 
     private fun previousButtonOnClickListener(): View.OnClickListener {
-        return object : View.OnClickListener {
-            override fun onClick(v: View) {
-                presenter!!.previousPressed()
-            }
-        }
+        return View.OnClickListener { presenter.previousPressed() }
     }
 
     private fun nextButtonOnClickListener(): View.OnClickListener {
-        return object : View.OnClickListener {
-            override fun onClick(v: View) {
-                presenter!!.nextPressed()
-            }
-        }
+        return View.OnClickListener { presenter.nextPressed() }
     }
 
     private fun falseButtonOnClickListener(): View.OnClickListener {
-        return object : View.OnClickListener {
-            override fun onClick(v: View) {
-                presenter!!.falsePressed()
-            }
-        }
+        return View.OnClickListener { presenter.falsePressed() }
     }
 
     private fun trueButtonOnClickListener(): View.OnClickListener {
-        return object : View.OnClickListener {
-            override fun onClick(v: View) {
-                presenter!!.truePressed()
-            }
-        }
+        return View.OnClickListener { presenter.truePressed() }
     }
 
     private fun cheatButtonOnClickListener(): View.OnClickListener {
-        return object : View.OnClickListener {
-            override fun onClick(v: View) {
-                presenter!!.cheatPressed()
-            }
-        }
+        return View.OnClickListener { presenter.cheatPressed() }
     }
 
     companion object {
