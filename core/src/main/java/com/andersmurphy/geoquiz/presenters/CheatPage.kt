@@ -6,11 +6,7 @@ class CheatPage(private val view: CheatView,
 
     override fun showAnswerPressed() {
         hasAnswerBeenShown = true
-        if (isQuestionAnswerTrue) {
-            view.showAnswerIsTrue()
-        } else {
-            view.showAnswerIsFalse()
-        }
+        if (isQuestionAnswerTrue) view.showAnswerIsTrue() else view.showAnswerIsFalse()
     }
 
     override fun setResult() {

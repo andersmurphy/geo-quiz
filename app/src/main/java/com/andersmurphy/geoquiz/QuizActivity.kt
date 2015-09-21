@@ -55,9 +55,7 @@ class QuizActivity : BaseActivity(), QuizView {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (data != null) {
-            presenter.resultFromCheatScreen(data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false))
-        }
+        if (data != null) presenter.resultFromCheatScreen(data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false))
     }
 
     override fun toastIncorrect() {

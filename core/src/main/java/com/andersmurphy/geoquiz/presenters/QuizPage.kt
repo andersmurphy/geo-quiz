@@ -21,11 +21,7 @@ public class QuizPage(private val view: QuizView,
         if (userCheated) {
             view.toastJudgement()
         } else {
-            if (currentQuestion.isTrue) {
-                view.toastCorrect()
-            } else {
-                view.toastIncorrect()
-            }
+            if (currentQuestion.isTrue) view.toastCorrect() else view.toastIncorrect()
         }
     }
 
@@ -33,11 +29,7 @@ public class QuizPage(private val view: QuizView,
         if (userCheated) {
             view.toastJudgement()
         } else {
-            if (currentQuestion.isTrue) {
-                view.toastIncorrect()
-            } else {
-                view.toastCorrect()
-            }
+            if (currentQuestion.isTrue) view.toastIncorrect()else view.toastCorrect()
         }
     }
 
